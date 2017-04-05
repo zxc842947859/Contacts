@@ -21,7 +21,7 @@ static NSString *ID = @"contact";
     [super viewDidLoad];
     // https://raw.githubusercontent.com/zxc842947859/Contacts/master/contacts.json
     
-    [[AFHTTPSessionManager manager] GET:@"https://github.com/zxc842947859/Contacts/blob/master/contacts.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] GET:@"https://raw.githubusercontent.com/zxc842947859/Contacts/master/contacts.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSMutableArray *arrM = [NSMutableArray array];
         for (NSDictionary *dict in responseObject) {
             [arrM addObject:[HMContact contactWithDict:dict]];
@@ -38,6 +38,8 @@ static NSString *ID = @"contact";
     }];
     UINib *nib = [UINib nibWithNibName:@"HMTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:ID];
+    
+    self.tableView.rowHeight = 60;
 }
 
 
